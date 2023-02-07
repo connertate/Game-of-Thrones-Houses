@@ -14,6 +14,10 @@ struct HouseDetailView: View {
     var selectedCharacter: Character? = nil
     let house: House
     
+    func formatString(_ str: String) -> String {
+        str == "" ? "Unknown" : str
+    }
+    
     func fetchMembers() {
         Task {
             do {
@@ -36,7 +40,7 @@ struct HouseDetailView: View {
             
             List {
                 Section(header: Text("Coat of Arms")) {
-                    Text("\(house.coatOfArms)")
+                    Text(formatString("\(house.coatOfArms)"))
                 }
                 
                 Section(header: Text("Members")) {

@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct HomeView: View {
     var networkController = NetworkController()
     
@@ -36,43 +34,57 @@ struct HomeView: View {
         NavigationView {
             if(houses.isEmpty) {
                 VStack {
-                    Text("Game of Thrones Houses")
-                        .font(.title2.weight(.semibold))
-                        .padding()
+                    Spacer()
                     
-                    Image("gotLogo")
-                        .resizable()
-                        .scaledToFit()
-                        .padding()
-                    
-                    Button(action: fetchHouses) {
-                        HStack {
-                            Spacer()
-                            
-                            Text("Load Data")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .padding()
-                            
-                            if(loading) {
-                                ProgressView()
-                                    .foregroundColor(.red)
-                                    .tint(.white)
+                    VStack {
+                        Text("Game of Thrones Houses")
+                            .font(.title2.weight(.semibold))
+                            .padding()
+                        
+                        Image("gotLogo")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.horizontal)
+                        
+                        Button(action: fetchHouses) {
+                            HStack {
+                                Spacer()
+                                
+                                Text("Explore Houses")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                
+                                if(loading) {
+                                    ProgressView()
+                                        .foregroundColor(.red)
+                                        .tint(.white)
+                                }
+                                
+                                Spacer()
                             }
-                            
-                            Spacer()
+                            .background(.black)
+                            .cornerRadius(20)
+                            .padding()
                         }
-                        .background(.black)
-                        .cornerRadius(20)
-                        .padding()
+                        .buttonStyle(.plain)
+                        
                     }
-                    .buttonStyle(.plain)
+                    .background(.regularMaterial)
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
+                    .padding(.horizontal)
+                    .padding(.horizontal)
                     
+                    Spacer()
+                    
+                    VStack() {
+                        Text("Data Source:")
+                        Link("An API of Ice And Fire", destination: URL(string:"https://www.anapioficeandfire.com")!)
+                    }
+                    .font(.footnote.weight(.semibold))
+                    .padding()
                 }
-                .background(.regularMaterial)
-                .cornerRadius(20)
-                .shadow(radius: 5)
-                .padding(40)
                 
                 
             } else {
