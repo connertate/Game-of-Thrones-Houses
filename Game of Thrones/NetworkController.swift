@@ -8,18 +8,7 @@
 import Foundation
 
 class NetworkController {
-
     var session = URLSession.shared
-    
-    let houseURL = URL(string: "https://www.anapioficeandfire.com/api/houses?page=15&pageSize=50")!
-    let baseHouseURL = URL(string: "https://www.anapioficeandfire.com/api/houses?page=")!
-    
-    func loadHouses() async throws -> [House] {
-        let (data, _) = try await session.data(from: houseURL)
-        let decoder = JSONDecoder()
-        return try decoder.decode([House].self, from: data)
-    }
-    
     
     func loadAllHouses() async throws -> [House] {
         var res = [House]()
